@@ -35,10 +35,13 @@ function App() {
         <Notification message="No feedback yet" />
       ) : (
         <VoteStats
-          good={votes.good}
-          neutral={votes.neutral}
-          bad={votes.bad}
-          total={total}
+          votes={votes}
+          totalVotes={votes.good + votes.neutral + votes.bad}
+          positiveRate={
+            Math.round(
+              (votes.good / (votes.good + votes.neutral + votes.bad)) * 100
+            ) || 0
+          }
         />
       )}
     </div>
